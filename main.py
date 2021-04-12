@@ -29,7 +29,8 @@ if __name__ == '__main__':
 
     inst = Instance(sim_setting)
     dict_data = inst.get_data()
-
+    print(dict_data)
+    
     # Reward generation
     n_scenarios = 5
     reward = sam.sample_stoch(
@@ -37,53 +38,58 @@ if __name__ == '__main__':
         n_scenarios=n_scenarios
     )
 
+    heu = SimpleHeu()
+    of_heu, sol_heu, comp_time_heu = heu.solve(
+        dict_data,
+        reward,
+        n_scenarios,
+    )
+    print(of_heu, sol_heu, comp_time_heu)
+
     # mean_reward = sam.sample_ev(
     #     inst,
     #     n_scenarios=n_scenarios
     # )
     # print(mean_reward)
 
-    prb = SimpleKnapsack()
-    of_exact, sol_exact, comp_time_exact = prb.solve(
-        dict_data,
-        reward,
-        n_scenarios,
-        verbose=True
-    )
-    print(of_exact, sol_exact, comp_time_exact)
+    # prb = SimpleKnapsack()
+    # of_exact, sol_exact, comp_time_exact = prb.solve(
+    #     dict_data,
+    #     reward,
+    #     n_scenarios,
+    #     verbose=True
+    # )
+    # print(of_exact, sol_exact, comp_time_exact)
 
     # COMPARISON:
-    test = Tester()
-
-    n_scenarios = 1000
-    reward_1 = sam.sample_stoch(
-        inst,
-        n_scenarios=n_scenarios
-    )
-
-    ris1 = test.solve_second_stages(
-        inst,
-        sol_exact,
-        n_scenarios,
-        reward_1
-    )
-
-    reward_2 = sam.sample_stoch(
-        inst,
-        n_scenarios=n_scenarios
-    )
-    ris2 = test.solve_second_stages(
-        inst,
-        sol_exact,
-        n_scenarios,
-        reward_2
-    )
-    plot_comparison_hist(
-        [ris1, ris2],
-        ["run1", "run2"],
-        ['red', 'blue'],
-        "profit", "occurencies"
-    )
+    # test = Tester()
+    # n_scenarios = 1000
+    # reward_1 = sam.sample_stoch(
+    #     inst,
+    #     n_scenarios=n_scenarios
+    # )
+    # ris1 = test.solve_second_stages(
+    #     inst,
+    #     sol_exact,
+    #     n_scenarios,
+    #     reward_1
+    # )
+    # reward_2 = sam.sample_stoch(
+    #     inst,
+    #     n_scenarios=n_scenarios
+    # )
+    # ris2 = test.solve_second_stages(
+    #     inst,
+    #     sol_exact,
+    #     n_scenarios,
+    #     reward_2
+    # )
+    # plot_comparison_hist(
+    #     [ris1, ris2],
+    #     ["run1", "run2"],
+    #     ['red', 'blue'],
+    #     "profit", "occurencies"
+    # )
 
     '''
     heu = SimpleHeu(2)

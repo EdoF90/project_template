@@ -78,7 +78,8 @@ class Tester():
             )
             of, sol, comp_time = problem.solve(
                 instance,
-                reward
+                reward,
+                n_scenarios_sol
             )
             ans[i] = of
         return ans
@@ -92,7 +93,8 @@ class Tester():
             )
             of, sol, comp_time = problem.solve(
                 instance,
-                reward
+                reward,
+                n_scenarios_sol
             )
             reward_out = sampler.sample_stoch(
                 instance,

@@ -57,11 +57,11 @@ $$
 $$
 
 $$
-\sum_{i\in \mathcal{I}} v_i y_i^s \leq V\ \ \ \forall\ s\ \in\ \mathcal{S}
+\sum_{i\in \mathcal{I}} v_i y_i^s \leq W \ \ \ \forall\ s\ \in\ \mathcal{S}
 $$
 
 $$
-y_i \leq x_i
+y_i^s \leq x_i \ \ \ \forall\ s\ \in\ \mathcal{S}
 $$
 
 $$
